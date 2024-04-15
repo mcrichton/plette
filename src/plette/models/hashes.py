@@ -1,3 +1,4 @@
+from .base import DataModel
 from .base import DataView
 
 
