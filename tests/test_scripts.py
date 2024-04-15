@@ -1,10 +1,6 @@
 import pytest
 
-try:
-    import cerberus
-except ImportError:
-    cerberus = None
-
+from plette.models.base import DataValidationError
 from plette.models import Script
 
 
@@ -14,12 +10,11 @@ def test_parse():
     assert script.args == ['-c', "print('hello')"], script
 
 
-@pytest.mark.skipif(cerberus is None, reason="Skip validation without Ceberus")
 def test_parse_error():
-    with pytest.raises(ValueError) as ctx:
+    with pytest.raises(DataValidationError) as ctx:
         Script('')
-    assert cerberus.errors.EMPTY_NOT_ALLOWED in ctx.value.validator._errors
-    assert len(ctx.value.validator._errors) == 1
+
+    assert str(ctx.value) == "Script cannot be empty", ctx
 
 
 def test_cmdify():
