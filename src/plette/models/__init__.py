@@ -1,12 +1,12 @@
 __all__ = [
-    "DataView", "DataViewCollection", "DataViewMapping", "DataViewSequence",
+    "DataView", "DataViewCollection", "DataViewMapping", "DataModelSequence",
     "validate", "ValidationError",
     "Hash", "Package", "Requires", "Source", "Script",
     "Meta", "PackageCollection", "ScriptCollection", "SourceCollection",
 ]
 
 from .base import (
-    DataView, DataViewCollection, DataViewMapping, DataViewSequence,
+    DataView, DataViewCollection, DataViewMapping, DataModelSequence,
     validate, ValidationError,
 )
 
