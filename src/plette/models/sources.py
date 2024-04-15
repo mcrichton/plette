@@ -7,7 +7,7 @@ class DataValidationError(ValueError):
     pass
 
 
-class Source(DataView):
+class Source:
     """Information on a "simple" Python package index.
 
     This could be PyPI, or a self-hosted index server, etc. The server
