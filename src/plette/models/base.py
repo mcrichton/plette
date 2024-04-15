@@ -201,7 +201,7 @@ class DataModel:
 
     @classmethod
     def validate(cls, data):
-        for k, v in self.__SCHEMA__.items():
+        for k, v in cls.__SCHEMA__.items():
             if k not in data:
                 raise DataValidationError(f"Missing required field: {k}")
             if not isinstance(data[k], v):
