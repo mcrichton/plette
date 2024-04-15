@@ -1,4 +1,4 @@
-from .base import DataView, DataViewMapping, DataViewSequence
+from .base import DataView, DataViewMapping, DataViewSequence, DataModelSequence
 from .hashes import Hash
 from .packages import Package
 from .scripts import Script
@@ -13,7 +13,7 @@ class ScriptCollection(DataViewMapping):
     item_class = Script
 
 
-class SourceCollection(DataViewSequence):
+class SourceCollection(DataModelSequence):
     item_class = Source
 
 
