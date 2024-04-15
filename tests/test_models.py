@@ -223,10 +223,16 @@ def test_del_slice(sources):
 
 @pytest.mark.skipif(cerberus is None, reason="Skip validation without Ceberus")
 def test_validation_error():
-    data = {"name": "test", "verify_ssl": 1}
-    with pytest.raises(models.base.ValidationError) as exc_info:
+    data = {"name": "test", "url": "https://pypi.org/simple", "verify_ssl": 1}
+    with pytest.raises(models.sources.DataValidationError) as exc_info:
         models.Source.validate(data)
 
     error_message = str(exc_info.value)
-    assert "verify_ssl: must be of boolean type" in error_message
-    assert "url: required field" in error_message
+    assert "Invalid type for field verify_ssl: <class 'int'>" in error_message
+
+    data = {"name": "test", "verify_ssl": False}
+    with pytest.raises(models.sources.DataValidationError) as exc_info:
+        models.Source.validate(data)
+
+    error_message = str(exc_info.value)
+    assert "Missing required field: url" in error_message
