@@ -1,6 +1,6 @@
 import os
 
-from .base import DataView, DataModel 
+from .base import DataModel
 
 
 class Source(DataModel):

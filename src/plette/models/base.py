@@ -207,6 +207,12 @@ class DataModel:
             if not isinstance(data[k], v):
                 raise DataValidationError(f"Invalid type for field {k}: {type(data[k])}")
 
+        if hasattr(cls, "__OPTIONAL__"):
+            for k, v in cls.__OPTIONAL__.items():
+                if k in data and not isinstance(data[k], v):
+                    raise DataValidationError(f"Invalid type for field {k}: {type(data[k])}")
+
+
 class DataModelCollection(DataModel):
     """A homogeneous collection of data views.
 
